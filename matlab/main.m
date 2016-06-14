@@ -1,11 +1,11 @@
 addpath('funcs/');
 
 global K_MAX;
-K_MAX = 2000;
+K_MAX = 100;
 
 prec = 1e-3;
 sc = 1e-3;
-xi = [1.1 1.1]';
+xi = [3 5]';
 
 f=9;
 
@@ -22,5 +22,6 @@ for f=1:12
 	[xk3, k] = quasiNewton(func, prec, sc, xi);
 	printf('quasi newton result: \nxk = (%.4f, %.4f)\tk = %f\n', xk3(1), xk3(2), k);
 
-	plotContour(func, -20:0.1:20, -20:0.1:20, [xk1 xk2 xk3])
+	plotContour(func, -20:20, -20:20, xi, [xk1 xk2 xk3])
+	fflush(stdout);
 end

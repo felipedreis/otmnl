@@ -1,0 +1,91 @@
+function f1
+newton result: 
+xk = (2.0000, 1.0000)	k = 3.000000
+newton with rank correction result: 
+xk = (2.0000, 1.0000)	k = 3.000000
+quasi newton result: 
+xk = (2.0000, 1.0000)	k = 3.000000
+function f2
+newton result: 
+xk = (1.0000, -1.0000)	k = 4.000000
+newton with rank correction result: 
+xk = (1.0000, -1.0000)	k = 4.000000
+quasi newton result: 
+xk = (1.0000, -1.0000)	k = 4.000000
+function f3
+newton result: 
+xk = (-1.0000, 5.0000)	k = 3.000000
+newton with rank correction result: 
+xk = (-0.9999, 5.0000)	k = 1.000000
+quasi newton result: 
+xk = (-0.9999, 5.0000)	k = 1.000000
+function f4
+newton result: 
+xk = (3.0001, 5.0001)	k = 1.000000
+newton with rank correction result: 
+xk = (3.0000, 5.0000)	k = 0.000000
+quasi newton result: 
+xk = (3.0000, 5.0000)	k = 0.000000
+function f5
+newton result: 
+xk = (3.0417, 5.0779)	k = 1.000000
+newton with rank correction result: 
+xk = (3.0000, 5.0000)	k = 0.000000
+quasi newton result: 
+xk = (3.0000, 5.0000)	k = 0.000000
+function f6
+newton result: 
+xk = (3.0000, 5.0000)	k = 100.000000
+warning: division by zero
+newton with rank correction result: 
+xk = (NaN, NaN)	k = 2.000000
+warning: division by zero
+warning: division by zero
+warning: division by zero
+warning: division by zero
+warning: division by zero
+quasi newton result: 
+xk = (NaN, NaN)	k = 2.000000
+function f7
+newton result: 
+xk = (2.9976, 4.9960)	k = 100.000000
+newton with rank correction result: 
+xk = (6.1513, 10.2520)	k = 3.000000
+quasi newton result: 
+xk = (6.1513, 10.2520)	k = 3.000000
+function f8
+newton result: 
+xk = (-0.0000, 0.0000)	k = 15.000000
+newton with rank correction result: 
+xk = (-48597.8506, 5.9586)	k = 1.000000
+quasi newton result: 
+xk = (-48597.8506, 5.9586)	k = 1.000000
+function f9
+newton result: 
+xk = (2.9849, 4.9747)	k = 3.000000
+newton with rank correction result: 
+xk = (-0.0000, 0.0000)	k = 4.000000
+quasi newton result: 
+xk = (-0.0000, 0.0000)	k = 4.000000
+function f10
+newton result: 
+xk = (0.9998, 0.9997)	k = 100.000000
+newton with rank correction result: 
+xk = (0.9997, 0.9994)	k = 52.000000
+quasi newton result: 
+xk = (0.9998, 0.9995)	k = 100.000000
+function f11
+newton result: 
+xk = (2.9847, 4.9744)	k = 100.000000
+newton with rank correction result: 
+xk = (-1.6582, -0.9950)	k = 9.000000
+quasi newton result: 
+xk = (-0.6633, 0.0000)	k = 100.000000
+function f12
+newton result: 
+xk = (3.1247, 4.9247)	k = 100.000000
+newton with rank correction result: 
+xk = (0.0000, -0.0000)	k = 3.000000
+quasi newton result: 
+xk = (0.0000, -0.0000)	k = 3.000000
+
