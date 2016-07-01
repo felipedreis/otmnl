@@ -7,7 +7,7 @@ function [xk, k] =  gradientDescent(func, prec, sc, x)
 	xk = x;
 	[N, ~] = size(x);
 
-	delta = 1e-9;;
+	delta = 1e-6;
 	gk = inf(N, 1);
 
 	while (norm(gk) > sc) 

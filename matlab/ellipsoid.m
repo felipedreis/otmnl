@@ -1,11 +1,5 @@
-function  [xk, k] = ellipsoid( func, prec, delta, x )
-% Gives optimal function point using Ellipsoidal method
-% INPUT:    func  = Function wich we want to calculate optimal value
-%           prec  = stop condition (precision)
-%           delta = gradient method precision (stop condition)
-%           x     = initial evaluation point
-% OUTPUT:   xk    = Optimal point found
-%           k     = Number of steps to reach optimal point.
+function  [xk, k] = ellipsoid( func, rest, prec, delta, x )
+
     global K_MAX;
     [dim,~] = size(x);
 
@@ -16,18 +10,18 @@ function  [xk, k] = ellipsoid( func, prec, delta, x )
     k=1;
     xk = [];
 
-    Qk = eye(dim); % Eye Matrix for initial region
+    Qk = eye(dim); 
     xk(:, k) = x;  
     V = Inf;
 
-    while (V >= prec)
+    while (V >= prec && k < K_MAX)
    
-        [rest, index] = knapsack_rest(xk(:, k));
+        [rgrad] = check_rest(xk(:, k), rest, delta);
        
-        if index == 0
+        if isnan(rgrad)
             gk = gradient(func, xk(:, k), delta);
         else
-            gk = rest;
+            gk = rgrad;
         end
         
         xk(:,k + 1) = xk(:,k) - b1 * (Qk * gk) /sqrt(gk' * Qk * gk);
@@ -35,7 +29,7 @@ function  [xk, k] = ellipsoid( func, prec, delta, x )
         Qk = b2 * (Qk - (( b3 * (Qk * gk) * (Qk * gk)') / (gk' * Qk * gk)));
 
         k = k+1;
-        V = pi*sqrt(det(Qk));
+        V = pi*det(sqrt(Qk));
     end
 end
 

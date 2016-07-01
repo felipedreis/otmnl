@@ -8,7 +8,6 @@ function [xk, k] = newton2(func, prec, sc, x)
     
     xk = x;
     gk = grad(func, xk, delta);
-    
     while (norm(gk) > sc && k < K_MAX) 
        dk = -Hk*gk;
        alpha = goldenRatio(func, prec, 0, 1, xk, dk);
@@ -24,5 +23,6 @@ function [xk, k] = newton2(func, prec, sc, x)
        Hk = Hk1;
        gk = gk1;
        k = k + 1;
+
     end
 end
