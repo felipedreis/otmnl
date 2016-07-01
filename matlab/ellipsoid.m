@@ -6,28 +6,36 @@ function  [xk, k] = ellipsoid( func, prec, delta, x )
 %           x     = initial evaluation point
 % OUTPUT:   xk    = Optimal point found
 %           k     = Number of steps to reach optimal point.
-   global K_MAX;
-   [dim,~] = size(x);
+    global K_MAX;
+    [dim,~] = size(x);
+
+    b1 = 1/(dim+1);
+    b2 = dim^2 / ((dim^2) - 1);
+    b3 = 2 / (dim + 1);
+
+    k=1;
+    xk = [];
+
+    Qk = eye(dim); % Eye Matrix for initial region
+    xk(:, k) = x;  
+    V = Inf;
+
+    while (V >= prec)
    
-   b1 = 1/(dim+1);
-   b2 = dim^2 / ((dim^2) - 1);
-   b3 = 2 / (dim + 1);
-   
-   k=1;
-   xk = [];
-   
-   Qk = eye(dim); % Eye Matrix for initial region
-   xk(:, k) = x;  
-   V = Inf;
-   
-   while (V >= prec)
-       gk = gradient(func, xk(:, k), delta);
-       xk(:,k + 1) = xk(:,k) - b1 * (Qk * gk) /sqrt(gk' * Qk * gk);
+        [rest, index] = knapsack_rest(xk(:, k));
        
-       Qk = b2 * (Qk - (( b3 * (Qk * gk) * (Qk * gk)') / (gk' * Qk * gk)));
-       
-       k = k+1;
-       V = pi*sqrt(det(Qk));
-   end
+        if index == 0
+            gk = gradient(func, xk(:, k), delta);
+        else
+            gk = rest;
+        end
+        
+        xk(:,k + 1) = xk(:,k) - b1 * (Qk * gk) /sqrt(gk' * Qk * gk);
+
+        Qk = b2 * (Qk - (( b3 * (Qk * gk) * (Qk * gk)') / (gk' * Qk * gk)));
+
+        k = k+1;
+        V = pi*sqrt(det(Qk));
+    end
 end
 
