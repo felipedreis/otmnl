@@ -1,22 +1,28 @@
-function plotContour(func, xdom, ydom, init, xstar)
+function plotContour(func, xdom, ydom, points)
+
+    global n
 
 	[X,Y] = meshgrid(xdom,ydom);
 	[l, c] = size(X);
+
 	Z = zeros(l, c);
 
 	for i=1:l
 		for j=1:c
 			Z(i,j) = feval(func, [X(i,j); Y(i,j)]);
 		end
-	end
+    end
 
-	%mesh(X,Y,Z);
-	f = figure('visible', 'on');
-	contour(X, Y, Z);
-	hold on;
-	plot(init(1), init(2), 'bo')
-	plot(xstar(1), xstar(2), 'x');
-	title(['Contour for function ' func])
-	saveas(f, ['images/' func '_contour.png'])
-	%%close(f);
+    contour(X, Y, Z, 10)
+	hold on
+    
+    [sp, ~] = size(points);
+    for i=1:sp-1
+        line(points(i,:)', points(i+1,:)')
+    end
+	%saveas(1, ['results/' strcat(func, num2str(n)) '_contour.jpeg'])
+	%close()
+    
+    %contour(X,Y,Z);
+    %mesh(X, Y, Z);
 end

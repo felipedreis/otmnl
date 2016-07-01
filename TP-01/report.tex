@@ -51,7 +51,7 @@ f(x, y) =
 \end{equation}
 
 Podemos ver na \autoref{fig:f1} as curvas de nível para \autoref{eq:f1}. O símbolo \textit{\textopenbullet} marca o ponto de início,
-e o símbolo \textit{\texttimes} marca o ótimo encontrado pelos três algoritmos.
+e o símbolo \textit{\texttimes} marca o ótimo encontrado pelos três algoritmos. 
 
 \begin{figure}[H]
   \centering
@@ -76,6 +76,9 @@ Quasi-newton		&	(2.0, 1.0)	&	3\\
 \caption{\small{Resultados para a função \autoref{eq:f1} }}
 \label{tab:f1}
 \end{table}
+
+Todos os três métodos chegaram no ótimo com poucas iterações já que a função é diferenciável e monotônica.
+
 
 \section{Função 2}
 A regra que define a função é:
@@ -105,7 +108,7 @@ e o símbolo \textit{\texttimes} marca o ótimo encontrado pelos três algoritmo
   \label{fig:f2}
 \end{figure}
 
-A \autoref{tab:f2} mostra os resultados encontrados para os três algoritmos testados bem como o número de iterações gasto por cada um deles.
+A \autoref{tab:f2} mostra os resultados encontrados para os três algoritmos testados bem como o número de iterações gasto por cada um deles. 
 
 \begin{table}[H]
 \centering
@@ -121,6 +124,8 @@ Quasi-newton		&	(1.0, -1.0)	&	4\\
 \caption{\small{Resultados para a função \autoref{eq:f2} }}
 \label{tab:f2}
 \end{table}
+
+Todos os três métodos chegaram no ótimo com poucas iterações já que a função é diferenciável e monotônica.
 
 
 \section{Função 3}
@@ -168,7 +173,9 @@ Quasi-newton		&	(-0.9999, 5.0)	&	1\\
 \label{tab:f3}
 \end{table}
 
-
+Todos os três métodos chegaram no ótimo com poucas iterações já que a função é diferenciável e monotônica. Nesta função o método de newton não deveria convergir já que 
+não é possível achar a inversa da matriz hessiana para essa função. Entretanto o método foi implementado com a função \textit{pinv()} em detrimento de \textit{inv()},
+o que garante uma matriz numericamente comportada para a inversa da hessiana.
 
 \section{Função 4}
 A regra que define a função é:
@@ -204,6 +211,9 @@ Quasi-newton		&	(3.0000, 5.0000)	&	0\\
 \label{tab:f4}
 \end{table}
 
+Apesar da função ser bem comportada, o ponto em que os métodos iniciaram não foi favorável para chegar ao mínimo global. Seria necessário
+começar mais próximo da bacia de atração de forma que o algoritmo conseguisse descer até o mínimo global.
+
 \section{Função 5}
 A regra que define a função é:
 \begin{equation}
@@ -238,6 +248,8 @@ Quasi-newton		&	(3.0000, 5.0000)	&	0\\
 \label{tab:f5}
 \end{table}
 
+O mesmo que aconteceu na última função, acontece nessa. O mínimo local está muito longe do ponto de início da busca, o que faz com que
+o algoritmo não consegue caminhar até a solução.
 
 \section{Função 6}
 A regra que define a função é:
@@ -276,8 +288,6 @@ Quasi-newton		&	(NaN, NaN)		&	2\\
 Para o método de Newton modificado é possível perceber que o algoritmo gastou o número máximo de iterações e não saiu da posição inicial.
 Para os dois outros métodos, houve algum problema de divisão por zero e o algoritmo parou sem encontrar nenhuma solução.
 
-
-
 \section{Função 7}
 A regra que define a função é:
 \begin{equation}
@@ -312,6 +322,8 @@ Quasi-newton		&	(6.1513, 10.2520)	&	3\\
 \label{tab:f7}
 \end{table}
 
+É possível ver que a função não é bem comportada, o que faz o método de Newton modificado gastar o número máximo de iterações e não se afasta muito
+do ponto inicial. O método de Newton corrigido e o Quasi-Newton convergem para um mínimo local.
 
 \section{Função 8}
 A regra que define a função é:
@@ -347,7 +359,8 @@ Quasi-newton		&	(-48597.8506, 5.9586)	&	1\\
 \label{tab:f8}
 \end{table}
 
-
+Podemos ver que o método de newton conseguiu convergir para o mínimo, entretanto os métodos com correção de posto e estimativa da hessiana
+tiveram problemas em caminhar no espaço. Provavelmente isso aconteceu pelo uso de \textit{pinv()} como já foi mencionado.
 
 \section{Função 9}
 A regra que define a função é:
@@ -383,6 +396,7 @@ Quasi-newton		&	(-0.0000, 0.0000)	&	4\\
 \label{tab:f9}
 \end{table}
 
+Nesta função o método de newton não conseguiu escapar do ponto de início enquanto os outros métodos alcançaram um minimo melhor.
 
 \section{Função 10}
 A regra que define a função é:
@@ -418,6 +432,8 @@ Quasi-newton		&	(0.9998, 0.9995)	&	100\\
 \label{tab:f10}
 \end{table}
 
+É possível ver que todos os métodos chegaram muito perto do ótimo mas dois deles levaram um número máximo de iterações e 
+o Newton com correção do posto levou quase metade das iterações máximas, i.e., todos tiveram muita dificuldade pra alcançar o mínimo.	
 
 
 \section{Função 11}
@@ -454,6 +470,9 @@ Quasi-newton		&	(-0.6633, 0.0000)	&	100\\
 \label{tab:f11}
 \end{table}
 
+Nesta função ambos os métodos de Newton e Newton corrigido ficam presos em mínimos locais. Somente o método de Quasi-Newton se aproxima da solução
+com um parando pelo número máximo de execuções.
+
 \section{Função 12}
 A regra que define a função é:
 \begin{equation}
@@ -487,4 +506,8 @@ Quasi-newton		&	(0.0000, -0.0000)	&	3\\
 \caption{\small{Resultados para a função \autoref{eq:f12} }}
 \label{tab:f12}
 \end{table}
+
+Nesta função o método de newton ficou preso em um mínimo local e parou pelo número máximo de iterações. Os dois últimos métodos encontraram 
+o mínimo global.
+
 \end{document}
